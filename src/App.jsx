@@ -39,6 +39,9 @@ const FadeInSection = ({ children, delay = 0, className = "" }) => {
 // AIPSC 2025 - Static Landing Page (Updated Links + Mobile Fixes)
 // ================================================
 
+const ticketingOpen = false; // change to true when ticketing starts
+
+
 export default function App() {
   // 1. MOBILE NAVBAR FIX: State to manage menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -268,10 +271,10 @@ export default function App() {
         </section>
 
         {/* WHY ATTEND - FIGMA BENTO */}
-        {/* Added ID for WHY ATTEND link */}
         <section id="why-attend" className="w-full py-12 bg-white">
           <div className="max-w-[1500px] w-[92%] mx-auto text-center">
-            {/* HEADING - Wrapped in FadeInSection */}
+
+            {/* HEADING */}
             <FadeInSection>
               <h3 className="text-4xl md:text-5xl font-extrabold">
                 WHY <span className="text-orange-500">ATTEND?</span>
@@ -283,42 +286,84 @@ export default function App() {
             
             {/* BENTO GRID */}
             <div className="grid grid-cols-12 gap-6 mt-14">
-              {/* ROW 1 - Staggered delays: 0, 100 */}
-              <FadeInSection delay={0} className="col-span-12 md:col-span-8 relative h-[260px] rounded-2xl overflow-hidden shadow-lg">
-                <img src="/aipsc/oa.png" className="w-full h-full object-cover" alt="Outbound Adventures" />
+
+              {/* ROW 1 */}
+              <FadeInSection 
+                delay={0} 
+                className="group col-span-12 md:col-span-8 relative h-[260px] rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img 
+                  src="/aipsc/oa.png" 
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" 
+                  alt="Outbound Adventures" 
+                />
                 <div className="absolute inset-0 bg-black/30 flex items-end p-6">
                   <h4 className="text-3xl font-extrabold text-white">Outbound Adventures</h4>
                 </div>
               </FadeInSection>
-              <FadeInSection delay={100} className="col-span-12 md:col-span-4 relative h-[260px] rounded-2xl overflow-hidden shadow-lg">
-                <img src="/aipsc/nw.png" className="w-full h-full object-cover" alt="Networking" />
+
+              <FadeInSection 
+                delay={100} 
+                className="group col-span-12 md:col-span-4 relative h-[260px] rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img 
+                  src="/aipsc/nw.png" 
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" 
+                  alt="Networking" 
+                />
                 <div className="absolute inset-0 bg-black/30 flex items-end p-6">
                   <h4 className="text-3xl font-extrabold text-white">Networking</h4>
                 </div>
               </FadeInSection>
-              {/* ROW 2 - Staggered delays: 200, 300 */}
-              <FadeInSection delay={200} className="col-span-12 md:col-span-4 relative h-[260px] rounded-2xl overflow-hidden shadow-lg">
-                <img src="/aipsc/td.png" className="w-full h-full object-cover" alt="Team Dynamics" />
+
+              {/* ROW 2 */}
+              <FadeInSection 
+                delay={200} 
+                className="group col-span-12 md:col-span-4 relative h-[260px] rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img 
+                  src="/aipsc/td.png" 
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  alt="Team Dynamics" 
+                />
                 <div className="absolute inset-0 bg-black/30 flex items-end p-6">
                   <h4 className="text-3xl font-extrabold text-white">Team Dynamics</h4>
                 </div>
               </FadeInSection>
-              <FadeInSection delay={300} className="col-span-12 md:col-span-8 relative h-[260px] rounded-2xl overflow-hidden shadow-lg">
-                <img src="/aipsc/ts.png" className="w-full h-full object-cover" alt="Talk Sessions" />
+
+              <FadeInSection 
+                delay={300} 
+                className="group col-span-12 md:col-span-8 relative h-[260px] rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img 
+                  src="/aipsc/ts.png" 
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  alt="Talk Sessions" 
+                />
                 <div className="absolute inset-0 bg-black/30 flex items-end p-6">
                   <h4 className="text-3xl font-extrabold text-white">Talk Sessions</h4>
                 </div>
               </FadeInSection>
-              {/* ROW 3 - Staggered delay: 400 */}
-              <FadeInSection delay={400} className="col-span-12 relative h-[260px] rounded-2xl overflow-hidden shadow-lg">
-                <img src="/aipsc/cn.png" className="w-full h-full object-cover" alt="Cultural Night" />
+
+              {/* ROW 3 */}
+              <FadeInSection 
+                delay={400} 
+                className="group col-span-12 relative h-[260px] rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img 
+                  src="/aipsc/cn.png" 
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  alt="Cultural Night" 
+                />
                 <div className="absolute inset-0 bg-black/40 flex items-end p-6">
                   <h4 className="text-4xl font-extrabold text-white">Cultural Night</h4>
                 </div>
               </FadeInSection>
+
             </div>
           </div>
         </section>
+
 
         <section id="experience" className="w-full py-12 bg-white">
   <div className="max-w-[1500px] w-[92%] mx-auto">
@@ -412,7 +457,20 @@ export default function App() {
 
         {/* ACCESS PASSES */}
         {/* Added ID for REGISTER NOW link */}
-        <section id="access-passes" className="w-full pt-16 pb-20 bg-white">
+        <section id="access-passes" className="w-full pt-16 pb-20 bg-white relative">
+          {/* --- COMING SOON OVERLAY --- */}
+          {!ticketingOpen && (
+            <div className="absolute inset-0 z-50 backdrop-blur-md bg-white/40 flex items-center justify-center rounded-[28px] transition-opacity duration-700 opacity-100">
+              <div className="text-center">
+                <h2 className="text-5xl md:text-7xl font-extrabold text-orange-600 drop-shadow-lg tracking-wide">
+                  COMING SOON
+                </h2>
+                <p className="mt-4 text-lg md:text-2xl text-slate-700 font-medium">
+                  Ticketing opens shortly
+                </p>
+              </div>
+            </div>
+          )}
           {/* HEADING and DESCRIPTION - Wrapped in FadeInSection with a single delay */}
           <FadeInSection>
             <div className="max-w-[1500px] w-[92%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
