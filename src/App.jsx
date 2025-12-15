@@ -43,6 +43,17 @@ const ticketingOpen = false; // change to true when ticketing starts
 
 
 export default function App() {
+  useEffect(() => {
+    if (window.location.pathname === "/register") {
+      setTimeout(() => {
+        registerRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  }, []);
+
   // 1. MOBILE NAVBAR FIX: State to manage menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -76,7 +87,7 @@ export default function App() {
             ))}
           </ul>
           {/* Updated Register Now Button Href */}
-          <a href="#access-passes" className="hidden md:flex bg-orange-500 text-white font-bold text-lg px-6 py-3 rounded-xl shadow hover:bg-orange-600 transition">REGISTER NOW</a>
+          <a href="#register" className="hidden md:flex bg-orange-500 text-white font-bold text-lg px-6 py-3 rounded-xl shadow hover:bg-orange-600 transition">REGISTER NOW</a>
           
           {/* MOBILE MENU TOGGLE BUTTON */}
           <button 
@@ -105,7 +116,7 @@ export default function App() {
               ))}
             </ul>
             <a 
-              href="#access-passes" 
+              href="#register" 
               className="mt-4 block mx-auto w-[92%] bg-orange-500 text-white font-bold text-lg px-6 py-3 rounded-xl shadow text-center hover:bg-orange-600 transition"
               onClick={toggleMenu} // Close menu on click
             >
@@ -457,7 +468,7 @@ export default function App() {
 
         {/* ACCESS PASSES */}
         {/* Added ID for REGISTER NOW link */}
-        <section id="access-passes" className="w-full pt-16 pb-20 bg-white relative">
+        <section id="register" className="w-full pt-16 pb-20 bg-white relative">
           {/* --- COMING SOON OVERLAY --- */}
           {!ticketingOpen && (
             <div className="absolute inset-0 z-50 backdrop-blur-md bg-white/40 flex items-center justify-center rounded-[28px] transition-opacity duration-700 opacity-100">
@@ -578,7 +589,7 @@ export default function App() {
               <div>
                 <h4 className="text-2xl font-bold">Ready to innovate?</h4>
                 {/* Footer Register Now button href to access passes */}
-                <a href="#access-passes" className="inline-block mt-4 bg-orange-500 py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition">Register Now</a>
+                <a href="#register" className="inline-block mt-4 bg-orange-500 py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition">Register Now</a>
               </div>
               <div>
                 <h5 className="text-lg font-semibold mb-4">Useful Links</h5>
