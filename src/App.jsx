@@ -43,6 +43,7 @@ const ticketingOpen = false; // change to true when ticketing starts
 
 
 export default function App() {
+  const registerRef = useRef(null);
   useEffect(() => {
     if (window.location.pathname === "/register") {
       setTimeout(() => {
@@ -66,6 +67,24 @@ export default function App() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const scrollToRegister = () => {
+  if (!registerRef.current) return;
+
+  const y =
+    registerRef.current.getBoundingClientRect().top +
+    window.scrollY -
+    100;
+
+  window.scrollTo({
+    top: y,
+    behavior: "smooth",
+  });
+
+  // remove any hash if browser adds it
+  window.history.replaceState({}, "", window.location.pathname);
+};
+
   
   // Array of Navbar Links for reuse
   const navLinks = [
@@ -93,8 +112,8 @@ export default function App() {
             ))}
           </ul>
           {/* Updated Register Now Button Href */}
-          <a href="#register" className="hidden md:flex bg-orange-500 text-white font-bold text-lg px-6 py-3 rounded-xl shadow hover:bg-orange-600 transition">REGISTER NOW</a>
-          
+          <button onClick={scrollToRegister} className="hidden md:flex bg-orange-500 text-white font-bold text-lg px-6 py-3 rounded-xl shadow hover:bg-orange-600 transition">REGISTER NOW</button>
+
           {/* MOBILE MENU TOGGLE BUTTON */}
           <button 
             className="md:hidden text-3xl font-bold text-slate-700"
@@ -121,13 +140,15 @@ export default function App() {
                 </li>
               ))}
             </ul>
-            <a 
-              href="#register" 
+            <button
               className="mt-4 block mx-auto w-[92%] bg-orange-500 text-white font-bold text-lg px-6 py-3 rounded-xl shadow text-center hover:bg-orange-600 transition"
-              onClick={toggleMenu} // Close menu on click
+              onClick={() => {
+                toggleMenu(); // Close menu on click
+                scrollToRegister();
+              }}
             >
               REGISTER NOW
-            </a>
+            </button>
           </div>
         )}
 
@@ -474,7 +495,7 @@ export default function App() {
 
         {/* ACCESS PASSES */}
         {/* Added ID for REGISTER NOW link */}
-        <section id="register" className="w-full pt-16 pb-20 bg-white relative">
+        <section ref={registerRef} className="w-full pt-16 pb-20 bg-white relative">
           {/* --- COMING SOON OVERLAY --- */}
           {!ticketingOpen && (
             <div className="absolute inset-0 z-50 backdrop-blur-md bg-white/40 flex items-center justify-center rounded-[28px] transition-opacity duration-700 opacity-100">
@@ -595,7 +616,7 @@ export default function App() {
               <div>
                 <h4 className="text-2xl font-bold">Ready to innovate?</h4>
                 {/* Footer Register Now button href to access passes */}
-                <a href="#register" className="inline-block mt-4 bg-orange-500 py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition">Register Now</a>
+                <button onClick={scrollToRegister} className="inline-block mt-4 bg-orange-500 py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition">Register Now</button>
               </div>
               <div>
                 <h5 className="text-lg font-semibold mb-4">Useful Links</h5>
