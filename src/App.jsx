@@ -39,7 +39,7 @@ const FadeInSection = ({ children, delay = 0, className = "" }) => {
 // AIPSC 2025 - Static Landing Page (Updated Links + Mobile Fixes)
 // ================================================
 
-const ticketingOpen = false; // change to true when ticketing starts
+const ticketingOpen = true; // change to true when ticketing starts
 
 
 export default function App() {
