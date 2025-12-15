@@ -46,13 +46,19 @@ export default function App() {
   useEffect(() => {
     if (window.location.pathname === "/register") {
       setTimeout(() => {
-        registerRef.current?.scrollIntoView({
+        const y =
+          registerRef.current.getBoundingClientRect().top +
+          window.scrollY -
+          100; // offset for navbar
+
+        window.scrollTo({
+          top: y,
           behavior: "smooth",
-          block: "start",
         });
-      }, 100);
+      }, 200);
     }
   }, []);
+
 
   // 1. MOBILE NAVBAR FIX: State to manage menu visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false);
